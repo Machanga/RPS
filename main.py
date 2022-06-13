@@ -4,40 +4,40 @@ choices = ['R','S','P']
 
 def get_player_choice():
     try:
-        player_choice = input("Pick  a choice (R = rock, P = paper, S = scissors): ")
+        Player = input("Pick  a choice (R = rock, P = paper, S = scissors): ")
     except:
-        if player_choice.upper() not in choices:
+        if Player.upper() not in choices:
             print("Kindly pick R, P, or S: (R=rock, P=paper, S=scissors)")
-            player_choice = input("Pick  a choice (R = rock, P = paper, S = scissors): ")
-    return player_choice.upper()
+            Player = input("Pick  a choice (R = rock, P = paper, S = scissors): ")
+    return Player.upper()
 
 def get_computer_choice():
-    computer_choice = random.choice(choices)
-    return computer_choice
+    CPU = random.choice(choices)
+    return CPU
 
-def check_if_draw(player_choice, computer_choice):
-    if player_choice == computer_choice:
-        return player_choice
+def check_if_draw(Player, CPU):
+    if Player == CPU:
+        return Player
 
-def print_winner(player_choice, computer_choice):
-    if player_choice == 'R' and computer_choice == 'S':
+def print_winner(Player, CPU):
+    if Player == 'R' and CPU == 'S':
         print('Rock smashes scissors! Player wins!')
-    elif player_choice == 'S' and computer_choice == 'P':
+    elif Player == 'S' and CPU == 'P':
         print('Scissors cuts paper! Player wins!')
-    elif player_choice == 'P' and computer_choice == 'R':
+    elif Player == 'P' and CPU == 'R':
         print('Paper covers rock! Player wins!')
     else:
         print('Computer wins!')
-        print("{} beats {}").format(computer_choice, player_choice)
+        print("%s smashes/covers/cuts %s" % (CPU, Player))
 
 def rock_paper_scissors():
-    player_choice = get_player_choice()
-    computer_choice = get_computer_choice()
-    if check_if_draw(player_choice, computer_choice):
-        print("It's a draw! Both players picked {}: ".format(player_choice))
+    Player = get_player_choice()
+    CPU = get_computer_choice()
+    if check_if_draw(Player, CPU):
+        print(f"\nIt's a draw! Both players picked {Player}.\n")
         rock_paper_scissors()
     else:
-        print(f"\nPlayer {player_choice} : CPU {computer_choice}.\n")
-        print_winner(player_choice, computer_choice)
+        print(f"\nPlayer {Player} : CPU {CPU}.\n")
+        print_winner(Player, CPU)
         
 rock_paper_scissors()
